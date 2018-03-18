@@ -1,0 +1,20 @@
+{
+    "name": "thetomcake/simple-rancher",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/yaml": "^4.0"
+    },
+    "license": "GNU GPL 3",
+    "authors": [
+        {
+            "name": "Tom Lindley",
+            "email": "tom@tlkr.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "thetomcake\\SimpleRancher\\": "src/"
+        }
+    }
+}
