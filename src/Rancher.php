@@ -9,6 +9,11 @@ class Rancher
 {
     private static $connections = [];
     
+    public static function newConnection(string $name, string $baseUrl, string $accessToken, string $secret)
+    {
+        return self::addConnection($name, new RancherConnection($baseUrl, $accessToken, $secret));
+    }
+    
     public static function addConnection(string $name, RancherConnection $connection)
     {
         self::$connections[$name] = $connection;
