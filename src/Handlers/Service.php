@@ -26,6 +26,16 @@ class Service extends Handler
         return isset($this->data->launchConfig->environment) ? $this->data->launchConfig->environment : new stdClass;
     }
     
+    public function commands() : array
+    {
+        return isset($this->data->launchConfig->command) ? $this->data->launchConfig->command : [];
+    }
+    
+    public function command() : string
+    {
+        return implode(' ', $this->commands());
+    }
+    
     public function healthState() : string
     {
         return $this->data->healthState;
