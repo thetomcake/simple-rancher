@@ -26,7 +26,7 @@ class Service extends Handler
     
     public function isHealthy() : bool
     {
-        return $this->healthState() === 'active';
+        return $this->healthState() === 'healthy';
     }
     
     public function state() : string
