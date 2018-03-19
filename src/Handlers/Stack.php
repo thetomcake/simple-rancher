@@ -56,6 +56,11 @@ class Stack extends Handler
         return $this->healthState() === 'initializing';
     }
     
+    public function isActive() : bool
+    {
+        return $this->state() === 'active';
+    }
+    
     public function services(bool $noCache = false) : Collection
     {
         return $this->services === null || $noCache === true ? $this->services = Rancher::get($this->link('services')) : $this->services;
