@@ -2,6 +2,8 @@
 
 namespace thetomcake\SimpleRancher\Handlers;
 
+use stdClass;
+
 class Service extends Handler
 {
     public function name() : string
@@ -17,6 +19,11 @@ class Service extends Handler
     public function image() : string
     {
         return isset($this->data->launchConfig->imageUuid) ? $this->data->launchConfig->imageUuid : '';
+    }
+    
+    public function environment() : stdClass
+    {
+        return isset($this->data->launchConfig->environment) ? $this->data->launchConfig->environment : new stdClass;
     }
     
     public function healthState() : string
