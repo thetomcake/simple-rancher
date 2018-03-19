@@ -5,9 +5,12 @@ namespace thetomcake\SimpleRancher\Handlers;
 use thetomcake\SimpleRancher\Rancher;
 use thetomcake\SimpleRancher\Handlers\Interfaces\Handler as HandlerInterface;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class Stack extends Handler
 {
+    protected $services;
+    
     public function name() : string
     {
         return $this->data->name;
@@ -53,19 +56,15 @@ class Stack extends Handler
         return $this->healthState() === 'initializing';
     }
     
-    public function services()
+    public function services(bool $noCache = false) : Collection
     {
-        return Rancher::get($this->link('services'));
+        return $this->services === null || $noCache === true ? $this->services = Rancher::get($this->link('services')) : $this->services;
     }
     
-    public function images() : array
+    public function images(bool $noCache = false) : array
     {
-        $images = [];
-        foreach ($this->dockerCompose()['services'] as $serviceCompose) {
-            if (!in_array($serviceCompose['image'], $images)) {
-                $images[] = $serviceCompose['image'];
-            }
-        }
-        return $images;
+        return array_map(function($service) {
+            return $service->image();
+        }, $this->services($noCache)->items());
     }
 }

@@ -12,6 +12,10 @@ trait FindsHandlers
         'collection' => \thetomcake\SimpleRancher\Handlers\Collection::class,
         'project' => \thetomcake\SimpleRancher\Handlers\Project::class,
         'stack' => \thetomcake\SimpleRancher\Handlers\Stack::class,
+        'service' => \thetomcake\SimpleRancher\Handlers\Service::class,
+        'networkDriverService' => \thetomcake\SimpleRancher\Handlers\Service::class,
+        'loadBalancerService' => \thetomcake\SimpleRancher\Handlers\Service::class,
+        'externalService' => \thetomcake\SimpleRancher\Handlers\Service::class,
     ];
     
     protected $defaultHandler = \thetomcake\SimpleRancher\Handlers\Handler::class;

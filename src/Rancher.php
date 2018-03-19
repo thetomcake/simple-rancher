@@ -28,6 +28,11 @@ class Rancher
         return new RancherRequest(self::$connections[$name]);
     }
     
+    public static function projects(string $connectionName = null)
+    {
+        return $connectionName === null ? self::get('/v2-beta/projects') : self::connection($connectionName)->get('/v2-beta/projects');
+    }
+    
     public static function __callStatic(string $name, array $params)
     {
         if (!count(self::$connections)) {
