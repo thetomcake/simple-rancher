@@ -3,6 +3,7 @@
 namespace thetomcake\SimpleRancher\Handlers;
 
 use stdClass;
+use thetomcake\SimpleRancher\Rancher;
 
 class Service extends Handler
 {
