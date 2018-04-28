@@ -21,12 +21,12 @@ class RancherRequest
     
     public function put(string $uri, array $params = [], array $getParams = []) : Handler
     {
-        return $this->request('put', $uri, ['form_params' => $params, 'query' => $getParams]);
+        return $this->request('put', $uri, array_merge(['form_params' => $params], $getParams ? ['query' => $getParams] : []));
     }
     
     public function post(string $uri, array $params = [], array $getParams = []) : Handler
     {
-        return $this->request('post', $uri, ['form_params' => $params, 'query' => $getParams]);
+        return $this->request('post', $uri, array_merge(['form_params' => $params], $getParams ? ['query' => $getParams] : []));
     }
     
     public function delete(string $uri, array $params = []) : Handler
@@ -36,12 +36,12 @@ class RancherRequest
     
     public function jsonPut(string $uri, array $params = [], array $getParams = []) : Handler
     {
-        return $this->request('put', $uri, ['json' => $params, 'query' => $getParams]);
+        return $this->request('put', $uri, array_merge(['json' => $params], $getParams ? ['query' => $getParams] : []));
     }
     
     public function jsonPost(string $uri, array $params = [], array $getParams = []) : Handler
     {
-        return $this->request('post', $uri, ['json' => $params, 'query' => $getParams]);
+        return $this->request('post', $uri, array_merge(['json' => $params], $getParams ? ['query' => $getParams] : []));
     }
     
     protected function request(string $method, string $uri, array $options = []) : Handler
@@ -50,7 +50,7 @@ class RancherRequest
         
         $parsedUrl = parse_url($uri); //if it's a full url with a scheme and host we want to strip them out and use the connection
         if (isset($parsedUrl['host'], $parsedUrl['scheme'], $parsedUrl['path'])) {
-            $uri = $parsedUrl['path'];
+            $uri = $parsedUrl['path'] . (isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '');
         }
         
         $authOption = ['auth' => [$this->connection->accessToken(), $this->connection->secret()]];

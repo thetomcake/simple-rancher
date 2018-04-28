@@ -7,6 +7,8 @@ use thetomcake\SimpleRancher\Rancher;
 
 class Service extends Handler
 {
+    protected $instances;
+    
     public function name() : string
     {
         return $this->data->name;
@@ -20,6 +22,11 @@ class Service extends Handler
     public function image() : string
     {
         return isset($this->data->launchConfig->imageUuid) ? $this->data->launchConfig->imageUuid : '';
+    }
+    
+    public function instances(bool $noCache = false) : Collection
+    {
+        return $this->instances === null || $noCache === true ? $this->instances = Rancher::get($this->link('instances')) : $this->instances;
     }
     
     public function environment() : stdClass
