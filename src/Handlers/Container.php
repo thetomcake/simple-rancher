@@ -45,7 +45,6 @@ class Container extends Handler
     
     public function delete()
     {
-        echo "Sending delete to: " . $this->link('self') . "\n\n";
         return Rancher::delete($this->link('self'));
     }
     
