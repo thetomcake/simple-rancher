@@ -36,6 +36,16 @@ class Service extends Handler
         return implode(' ', $this->commands());
     }
     
+    public function restart()
+    {
+        return Rancher::jsonPost($this->action('restart'), [
+            'rollingRestartStrategy' => [
+                'batchSize' => 1,
+                'intervalMillis' => 2000
+            ]
+        ]);
+    }
+    
     public function healthState() : string
     {
         return $this->data->healthState;
