@@ -13,6 +13,7 @@ trait FindsHandlers
         'project' => \thetomcake\SimpleRancher\Handlers\Project::class,
         'stack' => \thetomcake\SimpleRancher\Handlers\Stack::class,
         'service' => \thetomcake\SimpleRancher\Handlers\Service::class,
+        'storageDriverService' => \thetomcake\SimpleRancher\Handlers\Service::class,
         'container' => \thetomcake\SimpleRancher\Handlers\Container::class,
         'networkDriverService' => \thetomcake\SimpleRancher\Handlers\Service::class,
         'loadBalancerService' => \thetomcake\SimpleRancher\Handlers\Service::class,

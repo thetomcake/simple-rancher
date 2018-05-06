@@ -68,8 +68,8 @@ class Stack extends Handler
     
     public function images(bool $noCache = false) : array
     {
-        return array_filter(array_map(function($service) {
-            return get_class($service) === Service::class ? $service->image() : '';
-        }, $this->services($noCache)->items()));
+        return array_map(function($service) {
+            return $service->image();
+        }, $this->services($noCache)->items());
     }
 }
